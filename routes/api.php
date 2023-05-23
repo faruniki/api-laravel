@@ -19,6 +19,7 @@ Route::get('/siswa', [SiswaController::class, 'index']);
 Route::post('/siswa/create', [SiswaController::class, 'store']);
 Route::get('/siswa/show/{id_siswa}', [SiswaController::class, 'show']);
 Route::post('/siswa/update/{id_siswa}', [SiswaController::class, 'update']);
+Route::post('/siswa/delete/{id_siswa}', [SiswaController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

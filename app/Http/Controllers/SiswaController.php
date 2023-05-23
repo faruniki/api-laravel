@@ -106,8 +106,21 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function destroy($id_siswa)
     {
-        //
+        try {
+            $siswa = Siswa::findorfail($id_siswa);
+
+            $data = $siswa->delete();
+
+            if($data) {
+                return formatAPI::createAPI(200, 'Success', $data);
+            } else {
+                return formatAPI::createAPI(400, 'Failed');
+            }
+
+        } catch (Exception $error) {
+            return formatAPI::createAPI(400, 'Failed', $error);
+        }
     }
 }
